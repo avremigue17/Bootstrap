@@ -269,7 +269,7 @@
 	        	</button>
 	      	</div>
 
-	      	<form action="UserController.php" method="POST" onsubmit="return validateForm(this)">
+	      	<form action="user" method="POST" onsubmit="return validateForm(this)">
 
 			    <div class="modal-body">
 			    	<div class="container"> 
@@ -371,6 +371,7 @@
 		        	</button>
 		        	<input type="hidden" id="action" name="action" value="store">
 		        	<input type="hidden" id="user_id" name="id">
+		        	<input type="hidden" name="token" value="<?= $_SESSION['token']?>">
 		      	</div>
 
 	      	</form>
@@ -438,8 +439,8 @@
 			    });
 
 			    $.ajax({ 
-				    url : 'controllers/UserController.php', 
-				    data : {id: id, action: 'remove'},
+				    url : 'user', 
+				    data : {id: id, action: 'remove', token:"<?= $_SESSION['token']?>" },
 				    type : 'POST', 
 				    dataType : 'json', 
 				    success : function(json) {
